@@ -28,7 +28,7 @@ namespace ImageResizer
             sw.Start();
             await imageProcess.ResizeImagesAsync(sourcePath, destinationPath, 2.0).ConfigureAwait(false);
             sw.Stop();
-            Console.WriteLine($"調整前-花費時間: {sw.ElapsedMilliseconds} ms");
+            Console.WriteLine($"調整後-花費時間: {sw.ElapsedMilliseconds} ms");
             Console.ReadKey();
         }
     }
