@@ -43,7 +43,8 @@ namespace ImageResizer
             List<string> allFiles = FindImages(sourcePath);
             ConcurrentStack<Task> tasks = new ConcurrentStack<Task>();
 
-            Parallel.ForEach(allFiles, (path) => { 
+            foreach (string path in allFiles)
+            {
                 tasks.Push(Task.Run(() =>
                 {
                     Image imgPhoto = Image.FromFile(path);
@@ -59,7 +60,7 @@ namespace ImageResizer
                     string destFile = Path.Combine(destPath, imgName + ".jpg");
                     processedImage.Save(destFile, ImageFormat.Jpeg);
                 }));
-            });
+            }
             return Task.WhenAll(tasks);
         }
         public void ResizeImages(string sourcePath, string destPath, double scale)
